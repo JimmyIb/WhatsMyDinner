@@ -1,0 +1,32 @@
+body{
+          background: url("/App/images/profileIndexBackground.jpg");
+          min-height: 100%;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: center;
+          background-size: cover
+}
+.card-group{
+    margin: 1%;
+}
+.profileBtns{
+	margin-top:30px;
+	float:right;
+}
+.profileBtns a{
+	margin-bottom: 5px;
+	width: 100%;
+}
+.profileBtns button{
+	width: 100%;
+}
+img{
+    width: 200px;
+    height: 200px;
+    display:block;
+    margin-right: 5px;
+}
+
+.profileCard{
+	float: left;
+}
