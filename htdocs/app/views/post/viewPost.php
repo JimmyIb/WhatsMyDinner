@@ -2,6 +2,10 @@
 <body>
 <link href='/css/viewPost.css' rel='stylesheet'/>
 <?php 
+$link = explode("/", $_SERVER['REQUEST_URI']);
+    if($link[2] == "viewPost"){
+      echo "<title>" . $data->title . "</title>";
+    }
   $date = date_create_from_format("Y-m-d H:i:s",$data->date_posted);
   $formattedDate = date_format($date, "d F Y");
 ?>
