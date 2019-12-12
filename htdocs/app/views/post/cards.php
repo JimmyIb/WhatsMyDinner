@@ -39,7 +39,7 @@
 				$formattedDate = date_format($date, "d F Y");
 
 				print "
-				<div class='card-group recipe' style='width: 600px; margin-left: 50px'>
+				<div class='card-group recipe' style='width: 550px; margin-left: 50px'>
 					<div class='card' style='border-right: 1px solid #d9d9d9;'>
 						<a href='/post/viewPost/". $value->post_id ."'><img id='recipeImage' class='card-img-top' src='". $value->path ."'></a>
 						<div class='card-body'>
@@ -84,9 +84,7 @@
 			if($data == null){
 				print "There are no posts :(";
 			}else{
-				print "</div><br/>	
-				<p style='text-align: center'
-				><b>End of Content</b></p>"; //close row div & add text end of content
+				print "</div> <p style='padding: 30px'></p>"; //close row div & add text end of content
 			}
 		?>
 

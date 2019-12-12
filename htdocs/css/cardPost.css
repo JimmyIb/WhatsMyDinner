@@ -1,9 +1,3 @@
-@media (max-width: 500px){
-	#recipeImage{
-		height: 80%;
-		width: 100%;
-	}
-}
 #recipeImage{ 
 	height: 200px;
 }
