@@ -31,10 +31,29 @@
                         <input type="text" name='lname' class="form-control" id='lNameInput' placeholder="Last Name" value="<?php echo $data->last_name?>" >
                         <p id='errorLastName'></p>
                       </div>
+
+                      <div class="form-label-group" style='padding-bottom: 10px'>
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Enter password">
+                        <?php
+                          
+                          if($data->error){
+                            print "<p style='color:red'>Incorrect Password</p>
+                                    <script>
+                                      var passwordField = document.getElementById('passwordInput');
+                                      passwordField.style.backgroundColor = '#ed9090';
+                                    </script>";
+                          }
+
+                        ?>
+                      </div>
+
                       <div class='form-label-group'>
                         <label for="picture" style="margin-right: 10px;">Change profile picture</label>
                         <input type="file" class="form-control-file" name="picture"/>
                       </div>
+
+
                       <br/>
                       <?php 
                       if($data->picture_id != 2){
@@ -48,13 +67,13 @@
                         ";
                       }
                       ?>
-                        <button class="btn btn-lg btn-primary btn-block"name='editProfile' type="submit">Edit Profile</button>
+                        <button class="btn btn-lg btn-primary btn-block"name='editProfile' type="submit">Save Profile</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
      </form>
-     <script src='/js/createProfileValidation.js'></script>
+     <script src='/js/editProfileValidation.js'></script>
   </body>
  </html>

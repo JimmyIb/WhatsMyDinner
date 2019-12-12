@@ -12,6 +12,16 @@
 			return $STH->fetch();
 		}
 
+		public function searchUserbyID($id){
+			$STH = $this->_connection->prepare("SELECT * 
+												FROM User 
+												WHERE user_id = :user_id");
+			$STH->bindParam(':user_id', $id);
+			$STH->setFetchMode(PDO::FETCH_CLASS, 'User');
+			$STH->execute();
+			return $STH->fetch();
+		}
+
 		public function addUser($username, $password){
 			$STH = $this->_connection->prepare("INSERT INTO user(username,password) 
 												VALUES(:username, :password)");

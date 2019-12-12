@@ -73,19 +73,25 @@
 			
 			if(!isset($_SESSION['profile_id']) && $_SESSION['profile_id'] != $id)
 				$this->redirect('post','dashboard');
-
+				$userModel = $this->model('User');
 				$profileModel = $this->model('ProfileModel');
 				$profile = $profileModel->getProfile($_SESSION['user_id']);
-
+				$user = $userModel->searchUserbyID($_SESSION['user_id']);
+				$profile->error = false;
 					if(isset($_POST['editProfile'])){
-						$profileModel->updateProfile( $_POST['fname'],$_POST['lname']);
-						if(file_exists($_FILES['picture']['tmp_name']) || is_uploaded_file($_FILES['picture']['tmp_name'])){
-							$this->changePicture($id);
+
+						if(password_verify($_POST['password'], $user->password)){ //change profile if password matches
+							$profileModel->updateProfile( $_POST['fname'],$_POST['lname']); //first name and last name
+							if(file_exists($_FILES['picture']['tmp_name']) || is_uploaded_file($_FILES['picture']['tmp_name'])){ //change profile picture
+								$this->changePicture($id);
+							}
+							if(isset($_POST['removePic'])){ //remove profile picture
+								$profileModel->deleteProfilePicture();
+							}
+							$this->redirect('profile', 'index');
+						}else{
+							$profile->error = true;
 						}
-						if(isset($_POST['removePic'])){
-							$profileModel->deleteProfilePicture();
-						}
-						$this->redirect('profile', 'index');
 					}
 			
 			
@@ -132,6 +138,8 @@
 				$this->redirect('post','dashboard');
 			}
 		}
+
+
 		/*
 			Change profile picture
 		*/

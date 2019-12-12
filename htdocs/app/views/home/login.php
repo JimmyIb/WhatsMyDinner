@@ -24,9 +24,10 @@
                     <p id='errorPassword'></p>
                   </div>
                   <?php 
-                    if(strrpos(strtolower($_GET['url']), 'invalid')){
+                    if($data->error){
                       print"<p style='color: red'>Invalid username or password</p>";
                     }
+                    
                   ?>
                   </br>
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" value='login' name='submit' type="submit">Sign in</button>

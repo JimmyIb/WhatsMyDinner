@@ -8,7 +8,8 @@
 				$this->redirect('post', 'dashboard');
 			}
 
-			
+			$data = new stdClass();
+			$data->error = false;
 				try{
 					if(isset($_POST['submit'])){
 						$model = $this->model('User');
@@ -16,7 +17,6 @@
 						$password = $_POST['password'];
 						
 						$userData = $model->searchUser($username);
-
 						if($userData != null){
 							if(password_verify($password, $userData['password'])){
 								$_SESSION['user_id'] = (int) $userData['user_id'];
@@ -32,16 +32,19 @@
 									}
 									$this->redirect("post","dashboard");
 								}	
+							}else{
+								$data->error = true;
 							}
+						}else{
+							$data->error = true;
 						}
-						$this->redirect("home","login", array("invalid"));
 					}
 
 				}catch(Exception $e){
 					$e->getMessage();
 					print $e;
 				}
-			$this->view('home', 'login');
+			$this->view('home', 'login', $data);
 		}
 
 		public function create(){
@@ -71,6 +74,8 @@
 			}
 
 		}
+
+		
 
 		public function logout(){
 			session_destroy();
